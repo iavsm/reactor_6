@@ -12,11 +12,9 @@
 
   <body class="d-flex flex-column">
     
-    
-<% flash.each do |key,message|%>
-  <%= message %>
-<% end %>
+
 <%= render 'layouts/navigation' %>
 <%= yield %>
+<%= render 'layouts/footer' %>
   </body>
 </html>
