@@ -13,6 +13,19 @@ class UsersController < ApplicationController
             render 'new'
         end    
     end
+
+    def edit
+        @user = User.find(params[:id])
+    end 
+    
+    def update
+        @user = User.find(params[:id])
+        if @user.update(get_params)
+            flash[:notice] = "User updated successfully"
+        else 
+            render "edit"
+        end        
+    end 
     
     
     private
