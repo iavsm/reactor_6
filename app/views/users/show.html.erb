@@ -1,7 +1,14 @@
 <div id="page-content">
-    <h1 class="text-center mt-4"><%= @user.username %>'s Profile</h1>
-    <%= grvatar_for @user, size: 200 %>
+    <h1 class="text-center mt-4"><%= @user.username %>'s profile</h1>
 
-    <h3 class="text-center mt-4"><%= @user.username %>'s Articles</h3>
-    <%= render "/users/article" %>
+        <%= gravatar_for @user, size: 200 %>
+
+            <div class="text-center mt-4">
+            <%= link_to "Edit your profile", edit_user_path(@user), class: "btn btn-outline-info" %>
+            </div>
+
+        <h3 class="text-center mt-4">Articles</h3>
+
+    <%= render 'articles/article' %>
+
 </div>

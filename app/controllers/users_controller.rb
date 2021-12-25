@@ -2,7 +2,12 @@ class UsersController < ApplicationController
 
     def show
      @user = User.find(params[:id])
+     @article = @user.articles
     end
+
+    def index
+        @user = User.all()
+    end    
         
     def new
         @user = User.new    
@@ -26,6 +31,7 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
         if @user.update(get_params)
             flash[:notice] = "User updated successfully"
+            redirect_to @user
         else 
             render "edit"
         end        

@@ -1,6 +1,6 @@
 module ApplicationHelper
 
-    def grvatar_for(user, options = { size: 80 } )
+    def gravatar_for(user, options = { size: 80 } )
         # include MD5 gem, should be part of standard ruby install        
         # get the email from URL-parameters or what have you and make lowercase
         email_address = user.email.downcase
