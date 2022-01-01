@@ -41,7 +41,7 @@ class UsersController < ApplicationController
 
     def destroy 
         @user.destroy()
-        session[:user_id] = nil
+        session[:user_id] = nil if @user == current_user
         flash[:notice] = "User and all releated article are deleted"
         redirect_to articles_path
     end    
@@ -58,7 +58,7 @@ class UsersController < ApplicationController
     end  
     
     def required_same_user
-        if current_user != @user
+        if current_user != @user && !current_user.admin?
            flash[:alert] = "You logged in with different user"
            redirect_to @user
         end
