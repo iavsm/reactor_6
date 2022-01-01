@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
 
-    before_action :set_user, only: [:show, :edit, :update]
+    before_action :set_user, only: [:show, :edit, :update, :destroy]
+    before_action :required_user, only: [:edit, :update, :destroy]
+    before_action :required_same_user, only: [:edit, :update, :destroy]
 
     def show
      @article = @user.articles.paginate(page: params[:page], per_page: 1)
@@ -36,6 +38,13 @@ class UsersController < ApplicationController
             render "edit"
         end        
     end 
+
+    def destroy 
+        @user.destroy()
+        session[:user_id] = nil
+        flash[:notice] = "User and all releated article are deleted"
+        redirect_to articles_path
+    end    
     
     
     private
@@ -46,6 +55,14 @@ class UsersController < ApplicationController
 
     def set_user
         @user = User.find(params[:id])  
+    end  
+    
+    def required_same_user
+        if current_user != @user
+           flash[:alert] = "You logged in with different user"
+           redirect_to @user
+        end
     end    
+        
 
 end
