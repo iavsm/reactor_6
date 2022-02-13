@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# application helper
 module ApplicationHelper
   def gravatar_for(user, options = { size: 80 })
     # include MD5 gem, should be part of standard ruby install

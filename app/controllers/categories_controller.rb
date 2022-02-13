@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# categories controller
 class CategoriesController < ApplicationController
   def new
     @category = Category.new
